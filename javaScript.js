@@ -1,19 +1,21 @@
 function getComputerChoice()
 { 
-   let choice = Math.floor(Math.random()*3);
-   
-    if(choice==0)
-    {
+   let random = Math.floor(Math.random()*3);
+   let choice;
+    if(random==0)
+    {   
         console.log("Rock");
+        choice="rock";
     }
-    else if(choice==1)
+    else if(random==1)
     {
         console.log("Paper");
+        choice="rock";
     }
-    else if(choice==2)
+    else if(random==2)
     {
         console.log("Scissors");
+        choice="rock";
     }
+    return choice;
 }
-
-getComputerChoice();
