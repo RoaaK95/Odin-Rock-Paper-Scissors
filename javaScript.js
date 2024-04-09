@@ -26,7 +26,7 @@ function playRound(playerSelection,computerSelection)
 {  
     let result;
    
-    playerSelection = playerSelection.toLowerCase();
+   //playerSelection = playerSelection.toLowerCase();
     if(playerSelection===computerSelection)
     {
       result="Its a tie!"
@@ -63,20 +63,43 @@ function playRound(playerSelection,computerSelection)
         counter=-1;
     }
     return result;
+  
 }
 
-function playGame()
+//play five rounds
+ function playGame()
 {
  
-    for(let i=0; i<5;i++)
-    {
-      const playerSelection = prompt("Rock, Paper or Scissors: ");
+    //for(let i=0; i<5;i++)
+  //  {
+      //const playerSelection = prompt("Rock, Paper or Scissors: ");
       const computerSelection = getComputerChoice();
       console.log(playRound(playerSelection, computerSelection));
       finalCounter+=counter;
-    }
+   // }
     calculateResult();
-}
+} 
+
+//Buttons logic
+  
+const rockBtn= document.querySelector("#rock");
+const paperBtn= document.querySelector("#paper");
+const scissorsBtn= document.querySelector("#scissors");
+
+rockBtn.addEventListener("click", () => {
+    console.log("rock selected");
+    playerSelection="rock";
+  });
+
+  paperBtn.addEventListener("click",()=>{
+    console.log("paper selected");
+    playerSelection="paper";
+  })
+
+  scissorsBtn.addEventListener("click",()=>{
+    console.log("scissors selected");
+    playerSelection="scissors";
+  })
 function calculateResult()
 {
     //console.log(finalCounter);
@@ -96,6 +119,6 @@ function calculateResult()
      
 }
 
-
-playGame();
+playRound();
+//playGame();
 
