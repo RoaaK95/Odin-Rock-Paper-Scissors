@@ -80,25 +80,7 @@ function playRound(playerSelection,computerSelection)
     calculateResult();
 } 
 
-//Buttons logic
-  
-const buttons=document.querySelectorAll("button")
 
- buttons.forEach((button)=>{
-    button.addEventListener("click",()=>{
-        console.log(button.id);
-    })
- })
-
-  //Result container
-  const result=document.createElement("div");
-  const mainDiv=document.querySelector("#main");
-
-   result.setAttribute("style","border: solid 2px; text-align:center; font-size:20px");
-   result.textContent="result";
-
-  mainDiv.appendChild(result);
-  
 function calculateResult()
 {
     //console.log(finalCounter);
@@ -116,8 +98,33 @@ function calculateResult()
         console.log("ITS A TIE!");
      }
      
-}
+} 
 
-playRound();
+//Result container
+  const result=document.createElement("div");
+  const mainDiv=document.querySelector("#main");
+
+   result.setAttribute("style",
+    "border: solid 2px;text-align:center;font-size:20px; width:400px; height:50px; margin-top:20px;");
+   
+
+//Buttons logic
+  
+const buttons=document.querySelectorAll("button");
+const computerSelection = getComputerChoice();
+       
+let playerSelection;
+ buttons.forEach((button)=>{
+    button.addEventListener("click",()=>{
+        playerSelection=button.id.toString();
+        result.textContent= playRound(playerSelection,computerSelection).toString();
+        
+    })
+ })
+
+ 
+  mainDiv.appendChild(result);
+  
+
 //playGame();
 
