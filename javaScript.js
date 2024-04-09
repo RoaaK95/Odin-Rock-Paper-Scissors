@@ -29,37 +29,37 @@ function playRound(playerSelection,computerSelection)
    //playerSelection = playerSelection.toLowerCase();
     if(playerSelection===computerSelection)
     {
-      result="Its a tie!"
+      result="Round "+buttonClicks+": Its a tie!"
       counter=0;
     }
     else if(playerSelection=="rock"&& computerSelection=="paper")
     {
-        result="You Lose! Paper beats Rock";
+        result="Round "+buttonClicks+": You Lose! Paper beats Rock";
         counter=-1;
     }
     else if(playerSelection=="rock"&& computerSelection=="scissors")
     {
-        result="You Win! Rock beats Scissors";
+        result="Round "+buttonClicks+": You Win! Rock beats Scissors";
         counter=1;
     }
     else if(playerSelection=="paper"&& computerSelection=="rock")
     {
-        result="You Win! Paper beats Rock";
+        result="Round "+buttonClicks+": You Win! Paper beats Rock";
         counter=1;
     }
     else if(playerSelection=="paper"&& computerSelection=="scissors")
     {
-        result="You Lose! Scissors beats Paper";
+        result="Round "+buttonClicks+": You Lose! Scissors beats Paper";
         counter=-1;
     }
     else if(playerSelection=="scissors"&& computerSelection=="paper")
     {
-        result="You Win! Scissors beats Paper";
+        result="Round "+buttonClicks+": You Win! Scissors beats Paper";
         counter=1;
     }
     else if(playerSelection=="scissors"&& computerSelection=="rock")
     {
-        result="You Lose! Rock beats Scissors";
+        result="Round "+buttonClicks+ ": You Lose! Rock beats Scissors";
         counter=-1;
     }
     return result;
@@ -69,56 +69,63 @@ function playRound(playerSelection,computerSelection)
 //play five rounds
  function playGame()
 {
- 
-    //for(let i=0; i<5;i++)
-  //  {
-      //const playerSelection = prompt("Rock, Paper or Scissors: ");
-      const computerSelection = getComputerChoice();
-      console.log(playRound(playerSelection, computerSelection));
-      finalCounter+=counter;
-   // }
-    calculateResult();
+    finalCounter+=counter;
+    if(buttonClicks>=6)
+    {
+     buttonClicks=1;
+     result.textContent="Final Result: "+calculateResult();
+     console.log("finalCounter:",finalCounter);
+     counter=0;
+     finalCounter=0;
+    }
+      
 } 
 
 
 function calculateResult()
 {
-    //console.log(finalCounter);
+    let finalResult;
 
      if(finalCounter>0)
      {
-        console.log("YOU WIN!");
+        finalResult="YOU WIN!";
      }
      else if(finalCounter<0)
      {
-        console.log("YOU LOSE!");
+        finalResult="YOU LOSE!";
      }
      else
      {
-        console.log("ITS A TIE!");
+        finalResult="ITS A TIE!";
      }
+     return finalResult;
      
 } 
 
 //Result container
   const result=document.createElement("div");
   const mainDiv=document.querySelector("#main");
-
+  mainDiv.setAttribute("style",
+    "background-color:#050F; text-align:center; padding:10px;margin:100px 100px");
    result.setAttribute("style",
-    "border: solid 2px;text-align:center;font-size:20px; width:400px; height:50px; margin-top:20px;");
+    "border: solid 2px;text-align:center;font-size:20px; width:auto; height:50px; margin:20px 100px;padding:10px;");
    
 
 //Buttons logic
-  
+let buttonClicks=1;
 const buttons=document.querySelectorAll("button");
-const computerSelection = getComputerChoice();
-       
+const computerSelection = getComputerChoice();       
 let playerSelection;
  buttons.forEach((button)=>{
+    button.setAttribute("style","width:100px;height:auto; font-size:18px;");
     button.addEventListener("click",()=>{
         playerSelection=button.id.toString();
+        console.log("playerSelection: ",playerSelection);
+        console.log("computerSelection",computerSelection);
         result.textContent= playRound(playerSelection,computerSelection).toString();
-        
+        buttonClicks++;
+        console.log("counter: ",counter);
+        playGame();
     })
  })
 
@@ -126,5 +133,4 @@ let playerSelection;
   mainDiv.appendChild(result);
   
 
-//playGame();
 
