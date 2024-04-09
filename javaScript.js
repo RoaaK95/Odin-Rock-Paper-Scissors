@@ -82,24 +82,23 @@ function playRound(playerSelection,computerSelection)
 
 //Buttons logic
   
-const rockBtn= document.querySelector("#rock");
-const paperBtn= document.querySelector("#paper");
-const scissorsBtn= document.querySelector("#scissors");
+const buttons=document.querySelectorAll("button")
 
-rockBtn.addEventListener("click", () => {
-    console.log("rock selected");
-    playerSelection="rock";
-  });
+ buttons.forEach((button)=>{
+    button.addEventListener("click",()=>{
+        console.log(button.id);
+    })
+ })
 
-  paperBtn.addEventListener("click",()=>{
-    console.log("paper selected");
-    playerSelection="paper";
-  })
+  //Result container
+  const result=document.createElement("div");
+  const mainDiv=document.querySelector("#main");
 
-  scissorsBtn.addEventListener("click",()=>{
-    console.log("scissors selected");
-    playerSelection="scissors";
-  })
+   result.setAttribute("style","border: solid 2px; text-align:center; font-size:20px");
+   result.textContent="result";
+
+  mainDiv.appendChild(result);
+  
 function calculateResult()
 {
     //console.log(finalCounter);
