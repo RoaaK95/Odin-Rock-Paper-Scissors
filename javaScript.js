@@ -114,21 +114,23 @@ function calculateResult()
 //Buttons logic
 let buttonClicks=1;
 const buttons=document.querySelectorAll("button");
-const computerSelection = getComputerChoice();       
+     
 let playerSelection;
  buttons.forEach((button)=>{
     button.setAttribute("style","width:100px;height:auto; font-size:18px;");
     button.addEventListener("click",()=>{
         playerSelection=button.id.toString();
+        computerSelection = getComputerChoice();  
         console.log("playerSelection: ",playerSelection);
         console.log("computerSelection",computerSelection);
         result.textContent= playRound(playerSelection,computerSelection).toString();
         buttonClicks++;
         console.log("counter: ",counter);
         playGame();
+      
     })
  })
-
+   
  
   mainDiv.appendChild(result);
   
